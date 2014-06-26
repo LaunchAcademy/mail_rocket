@@ -1,3 +1,28 @@
 <h1><%= @post.title %></h1>
 
+<p>by <%= @post.user.email %></p>
+
 <%= @post.body %>
+
+<h3>Comments</h3>
+
+<% if @post.comments.any? %>
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.body %></p>
+  <% end %>
+<% else %>
+  <p>There aren't any comments yet!</p>
+<% end %>
+
+<% if @comment.errors.any? %>
+  <% @comment.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Save' %>
+<% end %>

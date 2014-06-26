@@ -1,3 +1,7 @@
+user = User.find_or_initialize_by(email: 'mrg@catsofinstagram.com')
+user.password = 'troutsalmon'
+user.save!
+
 post_attrs = [
   {
     title: 'Heartbeats',
@@ -21,5 +25,5 @@ post_attrs = [
 ]
 
 post_attrs.each do |attrs|
-  Post.find_or_create_by!(attrs)
+  user.posts.find_or_create_by!(attrs)
 end
