@@ -24,6 +24,12 @@ post_attrs = [
   }
 ]
 
-post_attrs.each do |attrs|
-  user.posts.find_or_create_by!(attrs)
+10000.times do |n|
+  post = user.posts.create!(post_attrs.sample)
+  puts "#{post.title} was created!"
+
+  rand(30).times do |i|
+    ohs = 'o' * i
+    post.comments.create!(body: "This post is s#{ohs} awesome!")
+  end
 end
