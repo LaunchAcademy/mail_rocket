@@ -2,6 +2,11 @@
   <% @posts.each do |post| %>
     <li>
       <h3><%= link_to post.title, post_path(post) %></h3>
+
+      <% post.comments[0..2].each do |comment| %>
+        <p><%= comment.body %></p>
+      <% end %>
     </li>
   <% end %>
 </ul>
+
